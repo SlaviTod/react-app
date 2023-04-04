@@ -4,19 +4,24 @@ Course project: ReactJS - February 2023
 
 # Client-side 
 The app is a Single Page Application cteated by using following technologies: 
-- [React] 
-- 
-- 
-- # Getting Started with Create React App
+- [React] https://react.dev/
+- [react-router-dom] 
+- [react-bootstrap] https://react-bootstrap.github.io/ 
+- [react-icons] https://react-icons.github.io/react-icons/
+- [react-transition-group] https://www.npmjs.com/package/react-transition-group; https://reactcommunity.org/react-transition-group/
+- [i18next] https://www.i18next.com/
+- [react-i18next] https://react.i18next.com/ 
+ 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# Getting Started
+Before running in the client project directory run `npm i` to istall all dependencies. 
 
+## Available Scripts
 In the project directory, you can run:
 
 ### `npm start`
-
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
@@ -24,12 +29,10 @@ The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
 ### `npm test`
-
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
-
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
@@ -38,45 +41,6 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 
 # Server-side 
@@ -94,3 +58,26 @@ These is a Node.js application cteated by using following technologies:
 - [validator.js] https://www.npmjs.com/package/validator 
 - [jsonwebtoken] https://www.npmjs.com/package/jsonwebtoken
 
+
+# Getting Started
+Before running in the server project directory run `npm i` to istall all dependencies. 
+The .env file should be created with following variables:
+    PORT=3030 
+    DB_CONNECTION=mongodb://
+    DB_HOST=127.0.0.1
+    DB_PORT=27017
+    DB_NAME=elbetitsa
+    JWT_AUDIENCE=ve.elbetitsa.org
+    JWT_ISSUER=ve.elbetitsa.org
+    JWT_SECRET=very-best!secret:)
+    JWT_EXPIRESIN=1h
+    
+## Available Scripts
+In the project directory, you can run:
+
+### `npm dev`
+### `npm start`
+Both run the app in the development mode.
+First one start nodemon - a tool that helps Node.js application development by automatically restarting when file changes in the directory are detected.
+
+You also can use [Postman] or other /api calls to [http://localhost:3030].

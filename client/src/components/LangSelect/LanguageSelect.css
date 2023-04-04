@@ -1,0 +1,26 @@
+.flag {
+    max-width: 40px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.flag-container.dropdown .dropdown-toggle,
+.flag-container .dropdown-menu {
+    background: none;
+    border: none;
+}
+
+.flag-container .dropdown-menu {
+    max-width: 70px;
+    min-width: 70px;
+}
+
+.navbar .flag-container .dropdown-menu .dropdown-item a,
+.flag-container .dropdown-menu .dropdown-item a {
+    padding: 0;
+}
+
+.flag-container .dropdown-item:active,
+.flag-container .dropdown-item:focus {
+    background-color: var(--bs-dropdown-link-hover-bg);
+}

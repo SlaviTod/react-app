@@ -1,0 +1,26 @@
+.scrool-to-top {
+    position: fixed;
+    visibility: hidden;
+    opacity: 0;
+    right: 15px;
+    bottom: 15px;
+    z-index: 996;
+    background: var(--theme-main-color);
+    color: var(--dark-black-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+  }
+  
+  .scrool-to-top:hover {
+    color: var(--dark-black-color);
+  }
+
+  .scrool-to-top .icon {
+    font-size: 28px;
+  }
+  
+  .scrool-to-top.active {
+    visibility: visible;
+    opacity: 1;
+  }

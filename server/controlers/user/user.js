@@ -37,7 +37,7 @@ const registerUser = async (req, res) => {
     if(!validateEmail(email)) throw Error('Email is not valid');
     if(!validatePassword(password, validationRequirements.password.minLength, validationRequirements.password.match)) throw Error('Password does not pass the requirements');
 
-    const passwordHash = generateHash(password);
+    const passwordHash = await generateHash(password);
 
     const savedUser = await userModel.create({ firstName, lastName, email, passwordHash });
 

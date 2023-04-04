@@ -1,0 +1,69 @@
+#front {
+    width: 100%;
+    height: 100vh;
+    background: url("../../../public/img/Italia.jpg") top center;
+    background-size: cover;
+    position: relative;
+  }
+  
+  #front:before {
+    content: "";
+    background: rgba(0, 0, 0, 0.65);
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  
+  #front .container {
+    position: relative;
+    padding-top: 74px;
+    text-align: center;
+  }
+  
+  #front h1 {
+    margin: 0;
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 64px;
+    color: var(--white-color);
+    font-family: "Poppins", sans-serif;
+  }
+    
+  #front p {
+    color: var(--white-color);
+  }
+
+  #front h1 span {
+    color: var(--theme-main-color);
+  }
+  
+  #front h2 {
+    color: rgba(255, 255, 255, 0.9);
+    margin: 10px 0 0 0;
+    font-size: 24px;
+  }
+  
+  
+  @media (min-width: 1024px) {
+    #front {
+      background-attachment: fixed;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    #front {
+      height: auto;
+    }
+  
+    #front h1 {
+      font-size: 28px;
+      line-height: 36px;
+    }
+  
+    #front h2 {
+      font-size: 20px;
+      line-height: 24px;
+    }
+  }

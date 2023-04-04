@@ -1,0 +1,10 @@
+#conductor .container {
+    margin-top: 60px;
+}
+
+#conductor .image {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 450px;
+  }

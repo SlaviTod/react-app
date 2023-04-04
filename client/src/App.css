@@ -1,0 +1,77 @@
+:root {
+  --theme-main-color: #ffbb33;
+  --theme-main-color-hover: #ffaa00;
+  --white-color: #ffffff;
+  --black-color: #394046;
+  --dark-black-color: #1a1a1a;
+  --darker-black-color: #4d4d4d;
+  --bg-main: #443322;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  color: var(--bg-main);
+}
+
+a {
+  color: var(--theme-main-color);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--theme-main-color-hover);
+  text-decoration: none;
+}
+
+.theme-c {
+    color: var(--theme-main-color);
+}
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Raleway", sans-serif;
+  }
+  
+  section {
+    padding: 60px 0;
+    overflow: hidden;
+  }
+  
+  .section-title {
+    padding-bottom: 40px;
+  }
+  
+  .section-title h2 {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0;
+    line-height: 1px;
+    margin: 0 0 5px 0;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--bs-gray-500);
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .section-title h2::after {
+    content: "";
+    width: 120px;
+    height: 1px;
+    display: inline-block;
+    background: #ffdd99;
+    margin: 4px 10px;
+  }
+  
+  .section-title p {
+    margin: 0;
+    font-size: 36px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-family: "Poppins", sans-serif;
+    color: var(--dark-black-color);
+  }
+  

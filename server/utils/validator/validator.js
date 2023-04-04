@@ -1,7 +1,7 @@
 const validator = require('validator');
 
 
-const validatePassword = (pass, min, regEx) => {
+const validatePassword = (pass, min, regEx, max) => {
     const lengthValid = validator.isLength(pass, { min, max });
     const hasPattern = regEx.test(pass);
     return lengthValid && hasPattern;
