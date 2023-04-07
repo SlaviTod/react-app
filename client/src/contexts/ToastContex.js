@@ -5,20 +5,23 @@ export const ToastContext = createContext();
 export const ToastProvider = ({
     children,
 }) => {
-        const [toasts, setToasts] = useState([]);
+    const [toasts, setToasts] = useState([]);
 
-        const addToast = (toast) => {
+    const addToast = (toast) => {
+        const isContainToast = toasts.findIndex(t => t.message !== toast.message);
+        if (isContainToast < 0) {
             setToasts(st => [...st, toast]);
             setTimeout(() => {
-                setToasts(st => st.filter(t => t.key !== toast.key));
+                setToasts(st => st.filter(t => t.message !== toast.message));
             }, toast.dellay || 7000);
         }
+    }
 
-        const removeToastOnClose = (toast) => {
-            setToasts(st => st.filter(t => t.key !== toast.key));
-        } 
+    const removeToastOnClose = (message) => {
+        setToasts(st => st.filter(t => t.message !== message));
+    }
 
-        const contextValues = {
+    const contextValues = {
         toasts,
         addToast,
         removeToastOnClose,

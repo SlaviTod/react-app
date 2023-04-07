@@ -7,7 +7,8 @@ import { FaRegSave } from 'react-icons/fa';
 import { useService } from './../../../../hooks/useService';
 import { userServiceFactory } from './../../../../services/userService';
 import { useAuthContext } from './../../../../contexts/AuthContext';
-
+import { useToastContext } from './../../../../contexts/ToastContex';
+import { toastType } from './../../../../constants/toastData';
 import { UserValidationSchema } from './userValidationSchema';
 
 import './UserForm.css';
@@ -20,17 +21,30 @@ export const UserForm = ({
     const { user, onUserUpdate } = useAuthContext();
 
     const { t } = useTranslation();
+    const { addToast } = useToastContext();
 
     const userService = useService(userServiceFactory);
 
     const onEditUser = async (value) => {
         try {
-            const { firstName, lastName } =  {...value }
+            const { firstName, lastName } = { ...value }
             const result = await userService.update(user._id, { firstName, lastName });
 
-            if(result.user) onUserUpdate(result.user);
+            if (result.user) onUserUpdate(result.user);
+
+            addToast({
+                type: toastType.success,
+                title: t('success'),
+                message: t('update_msg_success'),
+            })
+
             onEditChange();
         } catch (err) {
+            addToast({
+                type: toastType.error,
+                title: t('error'),
+                message: `${t('update_msg_error')}. ${t('tryAgain')}`,
+            })
             console.log(err.message);
         }
     }
@@ -54,7 +68,7 @@ export const UserForm = ({
                         <Row>
 
                             <Col className="col-md-6 offset-md-3">
-                                <h3>{isEditable ? t('updateUser') : t('userData') }</h3>
+                                <h3>{isEditable ? t('updateUser') : t('userData')}</h3>
 
                                 <div className="form-group">
                                     <label htmlFor="firstName">{t('firstName')}</label>

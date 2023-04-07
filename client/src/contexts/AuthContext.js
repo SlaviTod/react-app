@@ -1,9 +1,14 @@
 import { createContext, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
 import { useLocalStorage } from '../hooks/useLocalStorage';
+import { useToastContext } from './ToastContex';
 
 import { authServiceFactory } from '../services/authService';
 import { userServiceFactory } from './../services/userService';
+
+import { toastType } from './../constants/toastData';
 
 export const AuthContext = createContext();
 
@@ -12,25 +17,35 @@ export const AuthProvider = ({
 }) => {
     const [auth, setAuth] = useLocalStorage('auth', {});
     const navigate = useNavigate();
+    const { t } = useTranslation();
+    const { addToast } = useToastContext();
 
     const authService = authServiceFactory(auth.token);
-    
+
     const onLoginSend = async (data) => {
         try {
             const result = await authService.login(data);
             let avatar;
 
-            if(result.user.avatarId) {
-                const userService = userServiceFactory(result.token);
-                const res = await userService.getAvatar(result.user._id, result.user.avatarId);
-                avatar = URL.createObjectURL(res); 
+            try {
+                if (result.user.avatarId) {
+                    const userService = userServiceFactory(result.token);
+                    const res = await userService.getAvatar(result.user._id, result.user.avatarId);
+                    avatar = URL.createObjectURL(res);
+                }
+            } catch (err) {
+                console.log(err.message);
             }
 
             setAuth({ ...result, avatar });
 
             navigate('/concerts');
         } catch (err) {
-            console.log(err.message);
+            addToast({
+                type: toastType.error,
+                title: t('error'),
+                message: `${t('login_msg_error')}. ${t('tryAgain')}`,
+            })
         }
     };
 

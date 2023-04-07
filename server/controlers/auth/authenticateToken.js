@@ -61,9 +61,32 @@ const isAdminOrOwner = async (req, res, next) => {
     }
 }
 
+const isAdminOrMember = async (req, res, next) => {
+    try {
+        if (![role.admin, role.member].includes(req.user.role)) throw Error('You are not authorised!');
+
+        return next();
+    } catch (err) {
+        errorHandler(err, req, res);
+    }
+}
+
+const isAdminOrMemberOrAuthor = async (req, res, next) => {
+    try {
+        if (![role.admin, role.member, role.author].includes(req.user.role)) throw Error('You are not authorised!');
+
+        return next();
+    } catch (err) {
+        errorHandler(err, req, res);
+    }
+}
+
+
 module.exports = {
     authenticateToken,
     isUserOwner,
     isAdmin,
     isAdminOrOwner,
+    isAdminOrMember,
+    isAdminOrMemberOrAuthor,
 }

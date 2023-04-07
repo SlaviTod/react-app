@@ -1,9 +1,13 @@
 .toast-container {
     position: absolute;
-    top: 5%;
-    right: 5%;
+    top: 3%;
+    right: 1%;
     z-index: 999;
-    width: auto;
+    width: 250px;
+}
+
+.toast-container .icon {
+    margin-right: 10px;
 }
 
 .toast-container .toast-success .icon {

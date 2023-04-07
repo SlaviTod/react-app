@@ -6,7 +6,8 @@ import { BsEyeSlash, BsEye } from 'react-icons/bs';
 
 import { useService } from './../../../../hooks/useService';
 import { userServiceFactory } from './../../../../services/userService';
-
+import { useToastContext } from './../../../../contexts/ToastContex';
+import { toastType } from './../../../../constants/toastData';
 import { PassValidationSchema } from './passValidationSchema';
 
 import './ChangePass.css';
@@ -23,6 +24,7 @@ export const ChangePassForm = ({
     };
 
     const { t } = useTranslation();
+    const { addToast } = useToastContext();
 
     const userService = useService(userServiceFactory);
 
@@ -40,8 +42,19 @@ export const ChangePassForm = ({
         try {
             await userService.changePass(userId, value);
 
+            addToast({
+                type: toastType.success,
+                title: t('success'),
+                message: t('pass_change_msg_success'),
+            })
+
             onPassChange();
         } catch (err) {
+            addToast({
+                type: toastType.error,
+                title: t('error'),
+                message: `${t('pass_change_msg_error')}. ${t('tryAgain')}`,
+            })
             console.log(err.message);
         }
     }

@@ -32,9 +32,9 @@ export const Navigation = ({
             <Nav.Item><Nav.Link as={NavLink} to="/portfolio">{t("portfolio")}</Nav.Link></Nav.Item>
             <Nav.Item><Nav.Link as={NavLink} to="/contact">{t("contact")}</Nav.Link></Nav.Item>
 
-            {isAuthenticated &&
+            {isAuthenticated && [role.admin, role.author, role.member].includes(user.role) &&
                 <>
-                    <Nav.Item><Nav.Link as={NavLink} to="/calendar">{t("calendar")}</Nav.Link></Nav.Item>
+                    {/* <Nav.Item><Nav.Link as={NavLink} to="/calendar">{t("calendar")}</Nav.Link></Nav.Item> */}
                     <Nav.Item><Nav.Link as={NavLink} to="/repertoire">{t("repertoire")}</Nav.Link></Nav.Item>
                 </>}
 

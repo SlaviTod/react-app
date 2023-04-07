@@ -8,25 +8,30 @@ import { toastClassName, toastIcon } from '../../constants/toastData';
 import './Toaster.css';
 
 export const ToastItem = ({
-    key,
     type,
     title,
     message,
     position,
-    closeButton,
 }) => {
 
     const { removeToastOnClose } = useToastContext();
-    
+
     return (
-        <ToastContainer key={key} className={type ? toastClassName[type] : ''} position={position ? position : 'top-end'}>
-            <Toast onClose={() => removeToastOnClose(key)} animation={true}>
-                <Toast.Header closeButton={true}>
-                    {type && <span className="icon">{toastIcon[type]}</span>}
-                    <strong className="me-auto">{title}</strong>
-                </Toast.Header>
-                <Toast.Body>{message}</Toast.Body>
-            </Toast>
-        </ToastContainer>
+        <div
+            key={message}
+            aria-live="polite"
+            aria-atomic="true"
+            className="toast-container"
+        >
+            <ToastContainer className={type ? toastClassName[type] : ''} position={position ? position : 'top-end'}>
+                <Toast onClose={() => removeToastOnClose(message)} animation={true}>
+                    <Toast.Header closeButton={true}>
+                        {type && <span className="icon">{toastIcon[type]}</span>}
+                        <strong className="me-auto title">{title}</strong>
+                    </Toast.Header>
+                    <Toast.Body>{message}</Toast.Body>
+                </Toast>
+            </ToastContainer>
+        </div>
     )
 }

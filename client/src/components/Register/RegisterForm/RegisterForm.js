@@ -32,7 +32,6 @@ export const RegisterForm = () => {
     const userService = useService(userServiceFactory);
     const navigate = useNavigate();
 
-    const [toastKey, setToastKey] = useState(0);
     const [showPass, setShowPass] = useState(false);
     const [showCfPass, setShowCfPass] = useState(false);
 
@@ -47,7 +46,6 @@ export const RegisterForm = () => {
         try {
             await userService.register(values);
             addToast({
-                key: `${toastKey} ${t('registration_msg_success')}`,
                 type: toastType.success,
                 title: t('success'),
                 message: t('registration_msg_success'),
@@ -55,13 +53,10 @@ export const RegisterForm = () => {
             navigate('/login');
         } catch (err) {
             addToast({
-                key: `${toastKey} ${t('registration_msg_error')}`,
                 type: toastType.error,
                 title: t('error'),
                 message: `${t('registration_msg_error')}. ${t('tryAgain')}`,
             })
-            setToastKey(i => i++);
-            console.log(err.message);
         }
     };
 

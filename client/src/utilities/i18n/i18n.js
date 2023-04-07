@@ -21,7 +21,7 @@ i18n.use(initReactI18next).init({
                 portfolio: 'Portfolio',
                 portfolio_sub: 'Performances',
                 calendar: 'Calendar',
-                repertoire: 'Repertoire',
+                repertoire: 'Add Repertoire',
                 contact: 'Contact',
                 Bulgarian: 'Bulgarian',
                 English: 'English',
@@ -89,8 +89,13 @@ i18n.use(initReactI18next).init({
                 success: 'Success',
                 error: 'Error',
                 tryAgain: 'Please, thy again later',
-                registration_msg_success: 'The registration compleated successfully',
-                registration_msg_error: 'The registration failed.'
+                registration_msg_success: 'Registration was compleated successfully',
+                registration_msg_error: 'Registration failed',
+                login_msg_error: 'Login faild',
+                update_msg_success: 'User data was updated successfully',
+                update_msg_error: 'Update faild',
+                pass_change_msg_success: 'Password was changed successfully',
+                pass_change_msg_error: 'Password change faild',
             }
         },
         bg: {
@@ -106,7 +111,7 @@ i18n.use(initReactI18next).init({
                 portfolio: 'Портфолио',
                 portfolio_sub: 'Изпълнения',
                 calendar: 'Календар',
-                repertoire: 'Репертоар',
+                repertoire: 'Добави Репертоар',
                 contact: 'Контакти',
                 Bulgarian: 'Български',
                 English: 'Английски',
@@ -176,7 +181,11 @@ i18n.use(initReactI18next).init({
                 tryAgain: 'Моля, опитайте по-късно',
                 registration_msg_success: 'Регистрацията завърши успешно',
                 registration_msg_error: 'Неуспешна регистрация',
-
+                login_msg_error: 'Неуспешен логин',
+                update_msg_success: 'Потребителските данни бяха променени успешно',
+                update_msg_error: 'Обновяването е неуспешно',
+                pass_change_msg_success: 'Паролата е променена успешно',
+                pass_change_msg_error: 'Неуспешна промяна на парола',
             }
         },
     },
