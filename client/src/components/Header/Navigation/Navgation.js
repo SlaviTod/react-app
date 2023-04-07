@@ -4,6 +4,8 @@ import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
 import { LanguageWrapper } from './../../LangSelect/LanguageWrapper';
+import { useAuthContext } from '../../../contexts/AuthContext';
+import { role } from './../../../constants/roles';
 
 import './Navigation.css';
 
@@ -13,6 +15,8 @@ export const Navigation = ({
 }) => {
 
     const { t } = useTranslation();
+
+    const { user, isAuthenticated } = useAuthContext();
 
     return (
         <Nav className="navbar" bg="dark" variant="dark" defaultActiveKey="/">
@@ -26,14 +30,18 @@ export const Navigation = ({
             {/* <Nav.Item><Nav.Link as={NavLink} to="/comming-up">Comming up</Nav.Link></Nav.Item> */}
             <Nav.Item><Nav.Link as={NavLink} to="/concerts">{t("concerts")}</Nav.Link></Nav.Item>
             <Nav.Item><Nav.Link as={NavLink} to="/portfolio">{t("portfolio")}</Nav.Link></Nav.Item>
-
-            {isLogged &&
-                    <>
-            <Nav.Item><Nav.Link as={NavLink} to="/calendar">{t("calendar")}</Nav.Link></Nav.Item>
-            <Nav.Item><Nav.Link as={NavLink} to="/repertoire">{t("repertoire")}</Nav.Link></Nav.Item>
-            </>}
-
             <Nav.Item><Nav.Link as={NavLink} to="/contact">{t("contact")}</Nav.Link></Nav.Item>
+
+            {isAuthenticated &&
+                <>
+                    <Nav.Item><Nav.Link as={NavLink} to="/calendar">{t("calendar")}</Nav.Link></Nav.Item>
+                    <Nav.Item><Nav.Link as={NavLink} to="/repertoire">{t("repertoire")}</Nav.Link></Nav.Item>
+                </>}
+
+            {isAuthenticated && user.role === role.admin &&
+                <>
+                    <Nav.Item><Nav.Link as={NavLink} to="/users">{t("users")}</Nav.Link></Nav.Item>
+                </>}
 
             <LanguageWrapper wrapperClass="mx-3" />
             <i className="bi bi-list mobile-nav-toggle"></i>

@@ -2,6 +2,8 @@
   --theme-main-color: #ffbb33;
   --theme-main-color-hover: #ffaa00;
   --white-color: #ffffff;
+  --red-color: #ff4d4d;
+  --green-color: #00cc00;
   --black-color: #394046;
   --dark-black-color: #1a1a1a;
   --darker-black-color: #4d4d4d;
@@ -59,7 +61,7 @@ a:hover {
   
   .section-title h2::after {
     content: "";
-    width: 120px;
+    width: 150px;
     height: 1px;
     display: inline-block;
     background: #ffdd99;
@@ -75,3 +77,16 @@ a:hover {
     color: var(--dark-black-color);
   }
   
+  .error-message {
+    color: var(--red-color);
+  }
+
+  .form-footer {
+    font-size: 0.85em;
+    font-weight: 400;
+  }
+
+  .buttons .icon svg {
+    width: 20px;
+    height: 20px;
+  }

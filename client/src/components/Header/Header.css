@@ -1,5 +1,4 @@
 #header {
-    transition: all 0.5s;
     z-index: 997;
     padding: 15px 0;
 }
@@ -7,4 +6,14 @@
 #header.header-scrolled,
 #header.header-inner-pages {
     background: rgba(0, 0, 0, 0.8);
+}
+
+#header.header-scrolled {
+    transition: 0.5s;
+}
+
+@media (min-width: 1500px) {
+    #header .container {
+        max-width: 1400px;
+    }
 }

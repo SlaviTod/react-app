@@ -1,0 +1,26 @@
+#user-form .form-group {
+    margin: 20px 0;
+    position: relative;
+}
+
+#user-form .form-control {
+    border: 1px solid var(--theme-main-color);
+}
+
+#user-form .submit {
+    margin: 20px auto;
+    background: var(--theme-main-color);
+    border: 0;
+    padding: 10px 24px;
+    color: var(--dark-black-color);
+    border-radius: 4px;
+}
+
+#user-form .submit:hover {
+    background: var(--theme-main-color-hover);
+}
+
+#user-form .submit svg {
+    width: 22px;
+    height: 22px;
+}

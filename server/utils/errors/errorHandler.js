@@ -4,7 +4,12 @@ const logError = (err, req, res, next) => {
 }
 
 const errorHandler  = (err, req, res, next) => {
+    errorLogInner(err);
     res.status(err.httpStatus || 500).json({ message: err.message });
+}
+
+const errorLogInner = (err) => {
+    console.log(err);
 }
 
 const isTrustedError = (err) => {

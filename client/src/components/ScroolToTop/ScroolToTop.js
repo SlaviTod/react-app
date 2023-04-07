@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { BsArrowUp } from 'react-icons/bs';
 
-import { useScroolToTop } from './../../hooks/useScroolToTop';
+import { useScroolToTop } from './../../hooks/useSctoolToTop';
 
 import './ScroolToTop.css';
 

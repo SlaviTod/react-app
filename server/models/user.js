@@ -21,6 +21,7 @@ const shema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
+        unique: true,
         match: [/^[A-Za-z0-9_\.]+@[A-Za-z]+\.[A-Za-z]{2,3}$/, 'Email is not valid!'],
     },
     avatarId: String,

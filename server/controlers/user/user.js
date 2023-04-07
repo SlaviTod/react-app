@@ -1,8 +1,15 @@
 const { userModel } = require('./../../models/user');
 
-const { generateHash } = require('./../../utils/passwords/pass');
+const { generateHash, comparePass } = require('./../../utils/passwords/pass');
 
 const { validatePassword, validateEmail } = require('./../../utils/validator/validator');
+
+const { errorHandler } = require('./../../utils/errors/errorHandler');
+
+const {
+    usersForReturn,
+    userForReturn
+} = require('./formatUserData');
 
 const validationRequirements = {
     password: {
@@ -13,62 +20,133 @@ const validationRequirements = {
 
 
 const getAllUsers = async (req, res) => {
-// TODO add paginator 
+    // TODO add paginator 
+    try {
 
-    const users = await userModel.find({})
-    .select('firstName lastName email avatarId role createdAt updatedAt');
+        const users = await userModel.find({});
 
-    return res.status(200).json({ users });
+        return res.status(200).json({ users: usersForReturn(users) });
+    } catch (err) {
+        errorHandler(err, req, res);
+    }
 }
 
 const getUser = async (req, res) => {
-    
-    const { userId } = req.params;
+    try {
+        const { userId } = req.params;
 
-    const user = await userModel.findById(userId)
-    .select('firstName lastName email avatarId role isDeleted createdAt updatedAt deletedAt');
-    if(!user) throw Error('User not found');
-    return res.status(200).json({ user });
+        const user = await userModel.findById(userId, '_id firstName lastName email avatarId role createdAt updatedAt', { isDeleted: false });
+
+        if (!user) throw Error('User not found');
+
+        return res.status(200).json({ user });
+    } catch (err) {
+        errorHandler(err, req, res);
+    }
 }
 
 const registerUser = async (req, res) => {
-    
-    const { firstName, lastName, email, password } = req.body;  
-    if(!validateEmail(email)) throw Error('Email is not valid');
-    if(!validatePassword(password, validationRequirements.password.minLength, validationRequirements.password.match)) throw Error('Password does not pass the requirements');
+    try {
+        const { firstName, lastName, email, password } = req.body;
+        if (!validateEmail(email)) throw Error('Email is not valid');
+        if (!validatePassword(password, validationRequirements.password.minLength, validationRequirements.password.match)) throw Error('Password does not pass the requirements');
 
-    const passwordHash = await generateHash(password);
+        const user = await userModel.findOne({ email, isDeleted: false });
 
-    const savedUser = await userModel.create({ firstName, lastName, email, passwordHash });
+        if (user) throw Error('The email is already used for registration');
 
-    return res.json({ user: userForReturn(savedUser) });
+        const passwordHash = await generateHash(password);
+
+        const savedUser = await userModel.create({ firstName, lastName, email, passwordHash });
+
+        return res.json({ user: userForReturn(savedUser) });
+    } catch (err) {
+        errorHandler(err, req, res);
+    }
 }
 
 const updateUser = async (req, res) => {
-    
-    
+    try {
+        const { firstName, lastName } = req.body;
+
+        const { userId } = req.params;
+
+        const user = await userModel.findById(userId, '_id firstName lastName email avatarId role createdAt updatedAt', { isDeleted: false });
+
+        if(!user) throw Error('User not found');
+
+        user.firstName = firstName;
+        user.lastName = lastName;
+        await user.save();
+
+        return res.json({ user });
+    } catch (err) {
+        errorHandler(err, req, res);
+    }
 }
 
 
 const changeUserRole = async (req, res) => {
-    
-    
+    try {
+        const { role } = req.body;
+
+        const { userId } = req.params;
+
+        const user = await userModel.findById(userId, '_id firstName lastName email avatarId role createdAt updatedAt', { isDeleted: false });
+
+        if(!user) throw Error('User not found');
+
+        user.role = role;
+        await user.save();
+
+        return res.json({ user });
+    } catch (err) {
+        errorHandler(err, req, res);
+    }
 }
 
 const deleteUser = async (req, res) => {
-    
-    
+    try {
+        const { userId } = req.params;
+
+        const user = await userModel.findById(userId);
+
+        if (!user) throw Error('User not found');
+
+        user.isDeleted = true;
+        user.deletedAt = new Date();
+        await user.save();
+
+        return res.status(200).json({ user: userForReturn(savedUser) });
+    } catch (err) {
+        errorHandler(err, req, res);
+    }
 }
 
+const changeUserPass = async (req, res) => {
+    try {
+        const { userId } = req.params;
 
-const usersForReturn = (users) => {
-    return users.map(user => userForReturn(user));
+        const { oldPass, password } = req.body;
+
+        const user = await userModel.findById(userId, null, { isDeleted: false });
+
+        if (!user) throw Error('User not found');
+
+        if (!comparePass(oldPass, user.passwordHash)) throw Error('Old pass does not match');
+        if (!validatePassword(password, validationRequirements.password.minLength, validationRequirements.password.match)) throw Error('Password does not pass the requirements');
+
+        const passwordHash = await generateHash(password);
+        
+        user.passwordHash = passwordHash;
+        await user.save();
+
+        return res.status(200).json({ user: userForReturn(user) });
+    } catch (err) {
+        errorHandler(err, req, res);
+    }
 }
 
-const userForReturn = (user) => {
-    const { firstName, lastName, email, avatarId, role, createdAt, updatedAt } = user;
-    return { firstName, lastName, email, avatarId, role, createdAt, updatedAt };
-}
 
 module.exports = {
     getAllUsers,
@@ -77,4 +155,5 @@ module.exports = {
     updateUser,
     changeUserRole,
     deleteUser,
+    changeUserPass,
 }

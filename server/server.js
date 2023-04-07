@@ -30,13 +30,14 @@ const startServer = async () => {
         app.use(mongoSanitize());
 
         require('./router/router')(app);
+        // TODO add rate-limit
         
         app.get('*', (req, res) => {
             throw Error('URL not found');
         });
 
-        app.use(errorHandler.logError);
-        app.use(errorHandler.errorHandler);
+        // app.use(errorHandler.logError);
+        // app.use(errorHandler.errorHandler);
 
         app.listen(port, () => console.log(`The Server listen on port ${port}`));
     } catch (err) {

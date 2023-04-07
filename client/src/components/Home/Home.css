@@ -1,5 +1,5 @@
 #front {
-    width: 100%;
+    width: auto;
     height: 100vh;
     background: url("../../../public/img/Italia.jpg") top center;
     background-size: cover;

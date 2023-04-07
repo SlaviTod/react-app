@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import { AvatarImage } from './../../Images/AvatarImage';
+import { AvatarImage } from './../../Images/AvatarImage/AvatarImage';
 
 import './Logo.css';
 

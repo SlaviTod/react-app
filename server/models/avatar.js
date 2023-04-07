@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const shema = new mongoose.Schema({
     binData: Buffer,
+    mimeType: String,
     isDeleted: {
         type: Boolean,
         default: false

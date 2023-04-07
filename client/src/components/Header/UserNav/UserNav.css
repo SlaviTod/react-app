@@ -1,0 +1,17 @@
+#header .user-name {
+    font-size: 1.2em;
+    padding: 10px;
+}
+
+#header .user-icon svg {
+    width: 40px;
+    height: 40px;
+}
+
+.profile.tooltip .tooltip-arrow::before {
+    border-left-color: var(--theme-main-color);
+} 
+
+.profile.tooltip .tooltip-inner {
+    border: 2px solid var(--theme-main-color);
+}

@@ -1,0 +1,44 @@
+#pass-form .form-group {
+    margin: 20px 0;
+    position: relative;
+}
+
+#pass-form .form-group .form-icon {
+    padding: 10px;
+    font-size: 18px;
+    background: var(--theme-main-color);
+    color: var(--dark-black-color);
+    float: left;
+    width: 38px;
+    height: 38px;
+    border-radius: 4px;
+    position: absolute;
+    right: 0;
+    top: 24px;
+}
+
+#pass-form .form-group .form-icon svg {
+    vertical-align: baseline;
+}
+
+#pass-form .form-control {
+    border: 1px solid var(--theme-main-color);
+}
+
+#pass-form .submit {
+    margin: 20px auto;
+    background: var(--theme-main-color);
+    border: 0;
+    padding: 10px 24px;
+    color: var(--dark-black-color);
+    border-radius: 4px;
+}
+
+#pass-form .submit:hover {
+    background: var(--theme-main-color-hover);
+}
+
+#pass-form .submit svg {
+    width: 22px;
+    height: 22px;
+}

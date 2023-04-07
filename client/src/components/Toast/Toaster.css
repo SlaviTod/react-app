@@ -1,0 +1,15 @@
+.toast-container {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    z-index: 999;
+    width: auto;
+}
+
+.toast-container .toast-success .icon {
+    color: var(--green-color);
+}
+
+.toast-container .toast-error .icon {
+    color: var(--red-color);
+}

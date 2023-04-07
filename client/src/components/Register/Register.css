@@ -1,0 +1,32 @@
+/* 
+TODO set logo as background 
+#register.register {
+    width: auto;
+    /* height: 60vh; */
+    /* background: url('./../../../public/img/logo_2.jpg') center center; */
+    /* background-size: cover; */
+    /* position: relative; */
+/* } */ */
+
+/* #register:before {
+    content: "";
+    background: rgba(255, 255, 255, 0.05);
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+  } */
+
+  #register .register {
+    margin-top: 60px;
+}
+
+#register .section-title {
+  padding-bottom: 20px;
+}
+
+  #register .container {
+    position: relative;
+    padding-top: 74px;
+  }
