@@ -3,34 +3,37 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { IoPencilOutline, IoCloseSharp } from 'react-icons/io5';
 
-import { useToastContext } from './../../../contexts/ToastContex';
-import { useService } from './../../../hooks/useService';
-import { repertoireServiceFactory } from './../../../services/repertoaireService';
+import { useToastContext } from './../../../../contexts/ToastContex';
+import { useService } from './../../../../hooks/useService';
+import { repertoireServiceFactory } from './../../../../services/repertoaireService';
 
-import { RepertoireValidationSchema } from './repertoireValidationSchema';
-import { toastType } from './../../../constants/toastData';
-import { categories } from './../../../constants/categories';
+import { RepertoireValidationSchema } from './../../../Repertoire/RepertoireForm/repertoireValidationSchema';
+import { toastType } from './../../../../constants/toastData';
+import { categories } from './../../../../constants/categories';
+import { useRepertoireContext } from '../../../../contexts/PieceContext';
 
-import './RepertoireForm.css';
 
-export const RepertoireForm = () => {
+export const EditRepertoireForm = ({
+    piece,
+    onEditChange
+}) => {
     const categoriesArr = Object.values(categories);
 
     const initialValues = {
-        category: '',
-        videoLinks: [],
+        category: piece.category,
+        videoLinks: piece.videoLinks,
         translations: {
             en: {
-                name: '',
-                author: '',
-                arrangement: '',
-                description: '',
+                name: piece.translations.en.name,
+                author: piece.translations.en.author,
+                arrangement: piece.translations.en.arrangement,
+                description: piece.translations.en.description,
             },
             bg: {
-                name: '',
-                author: '',
-                arrangement: '',
-                description: '',
+                name: piece.translations.bg.name,
+                author: piece.translations.bg.author,
+                arrangement: piece.translations.bg.arrangement,
+                description: piece.translations.bg.description,
             },
         },
     };
@@ -42,21 +45,28 @@ export const RepertoireForm = () => {
     const { addToast } = useToastContext();
 
     const repertoireService = useService(repertoireServiceFactory);
+    const { editPiece } = useRepertoireContext();
 
     const onPieceSend = async (values) => {
+        console.log("🚀 ~ file: EditPiece.js:51 ~ onPieceSend ~ values:", values)
         try {
-            await repertoireService.createPiece(values);
+            
+            const res = await repertoireService.updatePiece(piece._id, values);
+            
+            editPiece(piece._id, res.piece);
+            onEditChange();
+
             addToast({
                 type: toastType.success,
                 title: t('success'),
-                message: t('repertoire_msg_success'),
+                message: t('repertoire_up_msg_success'),
             })
-            navigate('/portfolio');
+
         } catch (err) {
             addToast({
                 type: toastType.error,
                 title: t('error'),
-                message: `${t('repertoire_msg_error')}. ${t('tryAgain')}`,
+                message: `${t('repertoire_up_msg_error')}. ${t('tryAgain')}`,
             })
         }
     }
@@ -192,9 +202,11 @@ export const RepertoireForm = () => {
 
                         </div>
 
-                        <div className="d-flex align-items-center justify-content-center">
-                            <button type="submit" className="submit"><IoPencilOutline /> {t('register')}</button>
+                        <div className="d-flex justify-content-center buttons">
+                            <button type="submit" className="submit"><IoPencilOutline /> {t('save')}</button>
+                            <button type="button" className="submit" onClick={onEditChange}><IoCloseSharp /> {t('close')}</button>
                         </div>
+
                     </Form >
                 )}
             </Formik >

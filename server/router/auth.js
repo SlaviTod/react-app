@@ -6,7 +6,7 @@ const {
     isUserOwner,
 } = require('./../controlers/auth/authenticateToken');
 
-router.get('/', [authenticateToken, isUserOwner], authController.logout);
+router.get('/:userId', [authenticateToken, isUserOwner], authController.logout);
 
 router.post('/', authController.login);
 

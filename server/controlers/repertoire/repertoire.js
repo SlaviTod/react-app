@@ -1,6 +1,6 @@
-const { repertoirePieceModel } = require('./../../models/repertoair');
+const { repertoirePieceModel } = require('../../models/repertoire');
 
-const { errorHandler } = require('./../../utils/errors/errorHandler');
+const { errorHandler } = require('../../utils/errors/errorHandler');
 
 
 const paginationDefault = {
@@ -10,11 +10,11 @@ const paginationDefault = {
 
 const getAllRepertoirePieces = async (req, res) => {
     try {
-        let { itemsPerPage, page } = query.params;
+        let { itemsPerPage, page } = req.query;
         if (!itemsPerPage) itemsPerPage = paginationDefault.itemsPerPage;
         if (!page) page = paginationDefault.page;
 
-        const skip = itemsPerPage * page;
+        const skip = itemsPerPage * (page -1);
 
         const repertoire = await repertoirePieceModel.find({
             isDeleted: false,
@@ -74,7 +74,7 @@ const updateRepertoirePiece = async (req, res) => {
 
         const { pieceId } = req.params;
 
-        const { pieceData } = req.body;
+        const pieceData = req.body;
 
         const piece = await repertoirePieceModel.findById(pieceId, null, {
             isDeleted: false,

@@ -1,7 +1,7 @@
 
 const mongoose = require('mongoose');
 
-const { category } = require('./../data/category');
+const { category } = require('../data/category');
 
 const shema = new mongoose.Schema({
     category: {
@@ -21,13 +21,13 @@ const shema = new mongoose.Schema({
             },
             author: {
                 type: String,
-                minLength: [2, 'Author name should be at least 2 characters long!'],
+                // minLength: [2, 'Author name should be at least 2 characters long!'],
                 maxLength: [50, 'Author name should be up to 50 characters long!'],
                 match: [/^[A-Za-zА-Яа-я -]+$/, 'Author name is not valid!'],
             },
             arrangement: {
                 type: String,
-                minLength: [2, 'Arrangement name should be at least 2 characters long!'],
+                // minLength: [2, 'Arrangement name should be at least 2 characters long!'],
                 maxLength: [50, 'Arrangement name should be up to 50 characters long!'],
                 match: [/^[A-Za-zА-Яа-я -]+$/, 'Arrangement name is not valid!'],
             },
@@ -45,13 +45,13 @@ const shema = new mongoose.Schema({
             },
             author: {
                 type: String,
-                minLength: [2, 'Author name should be at least 2 characters long!'],
+                // minLength: [2, 'Author name should be at least 2 characters long!'],
                 maxLength: [50, 'Author name should be up to 50 characters long!'],
                 match: [/^[A-Za-zА-Яа-я -]+$/, 'Author name is not valid!'],
             },
             arrangement: {
                 type: String,
-                minLength: [2, 'Arrangement name should be at least 2 characters long!'],
+                // minLength: [2, 'Arrangement name should be at least 2 characters long!'],
                 maxLength: [50, 'Arrangement name should be up to 50 characters long!'],
                 match: [/^[A-Za-zА-Яа-я -]+$/, 'Arrangement name is not valid!'],
             },

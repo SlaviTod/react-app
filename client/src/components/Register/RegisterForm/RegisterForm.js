@@ -11,7 +11,7 @@ import { userServiceFactory } from '../../../services/userService';
 
 
 import { RegisterValidationSchema } from './registerValidationSchema';
-import { toastType } from '../../../constants/toastData';
+import { toastType } from './../../../constants/toastData';
 
 import './RegisterForm.css';
 

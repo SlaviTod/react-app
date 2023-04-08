@@ -9,7 +9,7 @@ const {
     isAdminOrOwner,
     isAdminOrMember,
     isAdminOrMemberOrAuthor,
-} = require('./../controlers/auth/authenticateToken');
+} = require('../controlers/auth/authenticateToken');
 
 router.get('',  repertoireController.getAllRepertoirePieces); 
 router.get('/:pieceId', repertoireController.getRepertoirePiece);

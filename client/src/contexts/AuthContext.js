@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -51,7 +51,7 @@ export const AuthProvider = ({
 
 
     const onLogout = async () => {
-        await authService.logout();
+        if(auth.user) await authService.logout(auth.user._id);
 
         setAuth({});
     };
@@ -73,7 +73,7 @@ export const AuthProvider = ({
         avatar: auth.avatar,
         token: auth.token,
         isAuthenticated: !!auth.token,
-    };
+    }
 
     return (
         <>

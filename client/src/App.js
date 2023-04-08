@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import { AuthProvider } from './contexts/AuthContext';
 import { ToastProvider } from './contexts/ToastContex';
+import { RepertoireProvider } from './contexts/PieceContext';
 
 import { Header } from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
@@ -21,6 +22,7 @@ import { LoginGuard } from './components/common/LoginGuard/LoginGuard';
 import { LogoutGuard } from './components/common/LogoutGuard/LogoutGuard';
 import { ToastContainer } from './components/Toast/ToastContainer';
 import { Repertoire } from './components/Repertoire/Repertoire';
+import { PieceDetails } from './components/Portfolio/PieceDetails/PieceDetails';
 
 import './App.css';
 
@@ -34,36 +36,66 @@ function App() {
   return (
     <ToastProvider>
       <AuthProvider>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/about-us" element={<AboutUs />}></Route>
-          <Route path="/conductor" element={<Conductor />}></Route>
-          <Route path="/concerts" element={<Concerts />}></Route>
-          <Route path="/portfolio" element={<Portfolio />}></Route>
-          <Route path="/contact" element={<Contact />}></Route>
+        <RepertoireProvider>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/about-us" element={<AboutUs />}></Route>
+            <Route path="/conductor" element={<Conductor />}></Route>
+            <Route path="/concerts" element={<Concerts />}></Route>
+            <Route path="/portfolio" element={<Portfolio />}></Route>
+            <Route path='/portfolio/:pieceId' element={<PieceDetails />} />
+            <Route path="/contact" element={<Contact />}></Route>
 
-
-          <Route element={<LoginGuard />}>
+            {/* TODO add guards  */}
             <Route path="/logout" element={<Logout />}></Route>
             <Route path="/profile" element={<Profile />}></Route>
             <Route path="/repertoire" element={<Repertoire />}></Route>
-          </Route>
 
-          <Route element={<LogoutGuard />}>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/register" element={<Register />}></Route>
-          </Route>
 
-          <Route path="*" element={<NotFound />}></Route>
-        </Routes>
-        <Footer />
+            <Route path="*" element={<NotFound />}></Route>
+          </Routes>
+          <Footer />
 
-        <ToastContainer />
-        <ScroolToTop scroolToTop={scroolToTop} />
+          <ToastContainer />
+          <ScroolToTop scroolToTop={scroolToTop} />
+        </RepertoireProvider>
       </AuthProvider>
     </ToastProvider>
   );
 }
 
 export default App;
+
+
+// <Route path="/logout" element={
+//     <LoginGuard>
+//       <Logout />
+//     </LoginGuard>}>
+//   </Route>
+
+//   <Route path="/profile" element={
+//     <LoginGuard>
+//       <Profile />
+//     </LoginGuard>}>
+//   </Route>
+
+//   <Route path="/repertoire" element={
+//     <LoginGuard>
+//       <Repertoire />
+//     </LoginGuard>}>
+//   </Route>
+
+//   <Route path="/login" element={
+//     <LogoutGuard>
+//       <Login />
+//     </LogoutGuard>}>
+//   </Route>
+
+//   <Route path="/register" element={
+//     <LogoutGuard>
+//       <Register />
+//     </LogoutGuard>}>
+//   </Route>

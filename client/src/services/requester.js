@@ -8,10 +8,24 @@ const request = async (method, token, url, data) => {
         options.body = JSON.stringify(data);
     }
 
-    if (token) options.headers = {
-        ...options.headers,
-        'authorization': `Bearer ${token}`,
-    };
+    if (token) {
+        options.headers = {
+            ...options.headers,
+            'authorization': `Bearer ${token}`,
+        }
+    } else {
+        const serializedAuth = localStorage.getItem('auth');
+        if (serializedAuth) {
+            const auth = JSON.parse(serializedAuth);
+
+            if (auth.accessToken) {
+                options.headers = {
+                    ...options.headers,
+                    'authorization': `Bearer ${token}`,
+                };
+            }
+        }
+    }
 
     const response = await fetch(url, options);
 

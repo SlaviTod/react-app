@@ -1,0 +1,22 @@
+#portfolio .card {
+    margin: 15px;    
+}
+#portfolio .card .card-body {
+    color: var(--bg-main);
+}
+#portfolio .form-icon.close {
+    background: var(--theme-main-color);
+    color: var(--dark-black-color);
+    float: left;
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 777;
+    border: none;
+}
+#portfolio .relative-position {
+    position: relative;
+}

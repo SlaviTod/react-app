@@ -11,8 +11,8 @@ export const Repertoire = () => {
             <div className="container">
 
                 <div className="section-title">
-                    <h2>{t('portfolio')}</h2>
-                    <p>{t('portfolio_sub')}</p>
+                    <h2>{t('repertoire')}</h2>
+                    <p>{t('repertoire_sub')}</p>
                 </div>
 
                 <RepertoireForm/>
