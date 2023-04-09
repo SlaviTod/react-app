@@ -7,10 +7,10 @@ export const commentReducer = (state, action) => {
         return [...action.payload];
         case 'addComment':
             return [
+                {
+                   ...action.payload,
+                },
                     ...state,
-                    {
-                       ...action.payload,
-                    }
                 ];
         case 'updateComment': 
             return state.map(x => x._id === action.payload._id ? action.payload : x);

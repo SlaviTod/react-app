@@ -20,7 +20,8 @@
     line-height: 30px;
   }
   
-  #front .time-box h3 {
+  #front .time-box h3,
+  #front .expired-box h3 {
     color: var(--white-color);
   }
   

@@ -1,4 +1,6 @@
 const { commentRepertoirePieceModel } = require('./../../../models/comments');
+const { errorHandler } = require('../../../utils/errors/errorHandler');
+const { role } = require('./../../../data/roles');
 
 const getAllComments = async (req, res) => {
     try {
@@ -11,7 +13,7 @@ const getAllComments = async (req, res) => {
         }
 
         const comments = await commentRepertoirePieceModel.find(options)
-            .select('_id author comment updatedAt')
+            .select('_id author userId comment updatedAt')
             .sort('-updatedAt')
 
         return res.json({ comments });
@@ -71,6 +73,8 @@ const updateComment = async (req, res) => {
         });
 
         if(!commentDB) throw Error('Comment not found');
+        if(commentDB.userId != req.user._id) throw Error('Not authorized to edit that comment');
+
         commentDB.comment = comment; 
         await commentDB.save();
 
@@ -89,7 +93,9 @@ const deleteComment = async (req, res) => {
             isDeleted: false,
         });
 
-        if(!comment) throw Error('Piece not found');
+        if(!comment) throw Error('Comment not found');
+        if(!(comment.userId == req.user._id) && !(req.user.role == role.admin)) throw Error('Not authorized to delete that comment');
+        
         comment.isDeleted = true;
         comment.deletedAt = new Date();
         await comment.save();

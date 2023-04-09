@@ -39,7 +39,7 @@ export const AuthProvider = ({
 
             setAuth({ ...result, avatar });
 
-            navigate('/concerts');
+            navigate('/portfolio');
         } catch (err) {
             addToast({
                 type: toastType.error,

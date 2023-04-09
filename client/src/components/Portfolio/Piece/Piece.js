@@ -37,8 +37,8 @@ export const Piece = ({
                     {/* <div className="icon"><GiMusicalScore /></div> */}
                     <Card.Title>{t(category)}</Card.Title>
                     <Card.Text>
-                        {translations[i18n.language].author && <p><span>{t('author')}: </span>{translations[i18n.language].author}</p>}
-                        {translations[i18n.language].arrangement && <p><span>{t('author')}: </span>{translations[i18n.language].arrangement}</p>}
+                        {translations[i18n.language].author && <><span>{t('author')}: </span>{translations[i18n.language].author}</>}
+                        {translations[i18n.language].arrangement && <><span>{t('author')}: </span>{translations[i18n.language].arrangement}</>}
                     </Card.Text>
                 </Card.Body>
             </Card>

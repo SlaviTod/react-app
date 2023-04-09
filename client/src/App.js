@@ -25,6 +25,7 @@ import { Repertoire } from './components/Repertoire/Repertoire';
 import { PieceDetails } from './components/Portfolio/PieceDetails/PieceDetails';
 
 import './App.css';
+import { CommentsProvider } from './contexts/CommentsContext';
 
 
 function App() {
@@ -37,30 +38,32 @@ function App() {
     <ToastProvider>
       <AuthProvider>
         <RepertoireProvider>
-          <Header />
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/about-us" element={<AboutUs />}></Route>
-            <Route path="/conductor" element={<Conductor />}></Route>
-            <Route path="/concerts" element={<Concerts />}></Route>
-            <Route path="/portfolio" element={<Portfolio />}></Route>
-            <Route path='/portfolio/:pieceId' element={<PieceDetails />} />
-            <Route path="/contact" element={<Contact />}></Route>
+          <CommentsProvider>
+            <Header />
+            <Routes>
+              <Route path="/" element={<Home />}></Route>
+              <Route path="/about-us" element={<AboutUs />}></Route>
+              <Route path="/conductor" element={<Conductor />}></Route>
+              <Route path="/concerts" element={<Concerts />}></Route>
+              <Route path="/portfolio" element={<Portfolio />}></Route>
+              <Route path='/portfolio/:pieceId' element={<PieceDetails />} />
+              <Route path="/contact" element={<Contact />}></Route>
 
-            {/* TODO add guards  */}
-            <Route path="/logout" element={<Logout />}></Route>
-            <Route path="/profile" element={<Profile />}></Route>
-            <Route path="/repertoire" element={<Repertoire />}></Route>
+              {/* TODO add guards  */}
+              <Route path="/logout" element={<Logout />}></Route>
+              <Route path="/profile" element={<Profile />}></Route>
+              <Route path="/repertoire" element={<Repertoire />}></Route>
 
-            <Route path="/login" element={<Login />}></Route>
-            <Route path="/register" element={<Register />}></Route>
+              <Route path="/login" element={<Login />}></Route>
+              <Route path="/register" element={<Register />}></Route>
 
-            <Route path="*" element={<NotFound />}></Route>
-          </Routes>
-          <Footer />
+              <Route path="*" element={<NotFound />}></Route>
+            </Routes>
+            <Footer />
 
-          <ToastContainer />
-          <ScroolToTop scroolToTop={scroolToTop} />
+            <ToastContainer />
+            <ScroolToTop scroolToTop={scroolToTop} />
+          </CommentsProvider>
         </RepertoireProvider>
       </AuthProvider>
     </ToastProvider>

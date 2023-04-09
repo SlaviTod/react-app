@@ -23,18 +23,12 @@ export const CommentsProvider = ({
     const { t } = useTranslation();
     const { addToast } = useToastContext();
 
-    useEffect(() => {
-        commentService.getOnePiece(pieceId)
-            .then(res => {
-                dispatch({ type: 'getComments', payload: res.comments});
-            })
-            .catch(err => {
-                console.log(err.message);
-            });
-    }, [pieceId]);
+    const onLoadComments = (comments) => {
+        dispatch({ type: 'getComments', payload: comments});
+    }
 
     
-    const onAddingComment = async (values) => {
+    const onAddingComment = async (pieceId, values) => {
         try {
             const res = await commentService.addComment(pieceId, values);
 
@@ -48,21 +42,11 @@ export const CommentsProvider = ({
         }
     }
 
-    const onUpdatingComment = async (commentId, values) => {
-        try {
-            const res = await commentService.updateComment(pieceId, commentId, values);
-
-            dispatch({ type: 'updateComment', payload: res.comment});
-        } catch(err) {
-            addToast({
-                type: toastType.error,
-                title: t('error'),
-                message: `${t('update_comment_msg_error')}. ${t('tryAgain')}`,
-            });
-        }
+    const onUpdatingComment = async (values) => {
+        dispatch({ type: 'updateComment', payload: values});
     }
 
-    const onDeletingComment = async (commentId) => {
+    const onDeletingComment = async (pieceId, commentId) => {
         try {
             await commentService.deleteComment(pieceId, commentId);
 
@@ -79,6 +63,7 @@ export const CommentsProvider = ({
     const contextValues = {
         comments,
         pieceId,
+        onLoadComments,
         onAddingComment,
         onUpdatingComment,
         onDeletingComment,

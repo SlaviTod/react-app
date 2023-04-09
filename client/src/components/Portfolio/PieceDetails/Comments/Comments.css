@@ -1,0 +1,63 @@
+.comments {
+    margin-top: 20px;
+}
+
+.comments .accordion-button span {
+    padding: 0 15px;
+}
+.comments .accordion-button {
+    border-color: var(--theme-main-color);
+    background-color: var(--theme-light-color);
+    color: var(--bs-accordion-color);
+}
+
+.comments-container {
+    border: 1px solid var(--theme-main-color);
+    max-height: 400px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.comments .accordion-item {
+    border-color: var(--theme-main-color);
+}
+
+#comment-form .submit {
+    margin: 20px auto;
+    background: var(--theme-main-color);
+    border: 0;
+    padding: 10px 24px;
+    color: var(--dark-black-color);
+    border-radius: 4px;
+}
+
+#comment-form .submit:hover {
+    background: var(--theme-main-color-hover);
+}
+#comment-form .buttons button {
+    display: inline-block;
+    margin: 10px 20px;
+}
+
+.comment {
+    position: relative;
+    margin: 10px;
+}
+
+.comment .top-buttons {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.comment .card-header {
+    font-size: 10px;
+}
+
+.comment .top-buttons .icon svg {
+    width: 16px;
+    height: 16px;
+}
+.comment p {
+    font-size: 0.8em;
+}

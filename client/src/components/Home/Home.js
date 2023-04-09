@@ -24,7 +24,7 @@ export const Home = () => {
       песните ни са
       нашата Цветница -
       за вас!`,
-      date: new Date(2023, 3, 8, 19, 30),
+      date: new Date(2023, 3, 9, 19, 30),
     },
     en: {
       name: "Colorfully",
@@ -40,7 +40,7 @@ export const Home = () => {
       песните ни са
       нашата Цветница -
       за вас!`,
-      date: new Date(2023, 3, 8, 19, 30),
+      date: new Date(2023, 3, 9, 19, 30),
     }
   }
   const { i18n, t } = useTranslation();

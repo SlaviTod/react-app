@@ -1,10 +1,29 @@
+import { useTranslation } from 'react-i18next';
 import { CommentItem } from './CommentItem';
-export const CommentsList = (
-    comments,
-) => {
+import { useCommentsContext } from '../../../../contexts/CommentsContext';
+
+export const CommentsList = () => {
+
+    const { t } = useTranslation();
+    const { comments } = useCommentsContext();
+
     return (
-        <>
-        {comments.map(comment => <CommentItem key={comment._id} comment={comment}/>)}
-        </>
+        <div className="comments-container">
+
+            <div className="row">
+                <div className="col-md-8 offset-2">
+                    {comments.length
+                        ?
+                        <>
+                            {comments.map(comment => <CommentItem key={comment._id} comment={comment} />)}
+                        </>
+                        :
+                        <>
+                            {t('noComments')}
+                        </>
+                    }
+                </div>
+            </div>
+        </div>
     );
-} ;
+};

@@ -17,12 +17,12 @@ router.get('/:pieceId/comments', commentsController.getAllComments);
 router.get('/:pieceId/comments/:commentId', commentsController.getComment);
 
 router.post('', [authenticateToken, isAdminOrMemberOrAuthor], repertoireController.addRepertoirePiece);
-router.post('/:pieceId', [authenticateToken], commentsController.addComment);
+router.post('/:pieceId/comments', [authenticateToken], commentsController.addComment);
 
 router.put('/:pieceId', [authenticateToken, isAdminOrMember], repertoireController.updateRepertoirePiece);
-router.put('/:pieceId/comments/:commentId', [authenticateToken, isUserOwner], commentsController.updateComment);
+router.put('/:pieceId/comments/:commentId', authenticateToken, commentsController.updateComment);
 
 router.delete('/:pieceId', [authenticateToken, isAdminOrMember], repertoireController.deleteRepertoirePiece);
-router.delete('/:pieceId/comments/:commentId', [authenticateToken, isAdminOrOwner], commentsController.deleteComment);
+router.delete('/:pieceId/comments/:commentId', authenticateToken, commentsController.deleteComment);
 
 module.exports = router;
